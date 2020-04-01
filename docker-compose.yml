@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  api:
+    container_name: python-todos-api
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/todos
+      - APP_PORT=5000
+    depends_on:
+      - mongo
+    volumes:
+      - .vscode:/api/.vscode
+    ports: ["5000:5000"]
+    tty: true
+
+  mongo:
+    container_name: mongo-db
+    image: mongo
+    volumes:
+      - "./db:/data/db"

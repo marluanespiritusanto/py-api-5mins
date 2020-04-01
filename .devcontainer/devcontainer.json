@@ -1,0 +1,23 @@
+{
+  "name": "Python API",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "api",
+  "workspaceFolder": "/api",
+  "shutdownAction": "stopCompose",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "editor.fontSize": 18,
+    "editor.formatOnSave": true,
+    "workbench.colorTheme": "Andromeda",
+    "workbench.iconTheme": "material-icon-theme"
+  },
+  "extensions": [
+    "christian-kohler.path-intellisense",
+    "CoenraadS.bracket-pair-colorizer",
+    "EliverLara.andromeda",
+    "esbenp.prettier-vscode",
+    "PKief.material-icon-theme",
+    "redhat.vscode-yaml",
+    "ms-python.python"
+  ]
+}
