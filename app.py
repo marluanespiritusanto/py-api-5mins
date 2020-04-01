@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, ObjectId
 from os import environ
 
 app = Flask(__name__)
@@ -8,7 +8,18 @@ mongo = PyMongo(app)
 db = mongo.db
 
 
-@app.route('/api/todo')
+@app.route('/api/todo/<todo_id>', methods=['GET'])
+def getTodo(todo_id):
+    _todo = db.todo.find_one({"_id": ObjectId(todo_id)})
+    item = {
+        'id': str(_todo['_id']),
+        'todo': _todo['todo']
+    }
+
+    return jsonify(data=item), 200
+
+
+@app.route('/api/todo', methods=['GET'])
 def getTodos():
     _todos = db.todo.find()
     item = {}
@@ -20,7 +31,7 @@ def getTodos():
         }
         data.append(item)
 
-    return jsonify(status=True, data=data)
+    return jsonify(data=data), 200
 
 
 @app.route('/api/todo', methods=['POST'])
@@ -31,7 +42,22 @@ def createTodo():
     }
     db.todo.insert_one(item)
 
-    return jsonify(status=True, message='To-do saved successfully!'), 201
+    return jsonify(data=data), 201
+
+
+@app.route('/api/todo/<todo_id>', methods=['PATCH'])
+def updateTodo(todo_id):
+    data = request.get_json(force=True)
+    db.todo.update_one({"_id": ObjectId(todo_id)}, {"$set": data})
+
+    return jsonify(data=data), 204
+
+
+@app.route('/api/todo/<todo_id>', methods=['DELETE'])
+def deleteTodo(todo_id):
+    db.todo.delete_one({"_id": ObjectId(todo_id)})
+
+    return jsonify(), 204
 
 
 if __name__ == "__main__":
