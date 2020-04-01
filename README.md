@@ -1,6 +1,6 @@
 # 5 Mins Python API 🔥
 
-Do you think that its possible create an API in Python? 😱 Of course!!!
+Do you think that is possible to create a Python API in 5 minutes? 😱 Of course!!!
 
 ## More information
 
