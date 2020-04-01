@@ -23,7 +23,7 @@ def getTodos():
     return jsonify(status=True, data=data)
 
 
-@app.route('/todo', methods=['POST'])
+@app.route('/api/todo', methods=['POST'])
 def createTodo():
     data = request.get_json(force=True)
     item = {
