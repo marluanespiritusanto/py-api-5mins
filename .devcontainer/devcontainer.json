@@ -4,6 +4,7 @@
   "service": "api",
   "workspaceFolder": "/api",
   "shutdownAction": "stopCompose",
+  "postCreateCommand": "pip install -r requirements.txt",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash",
     "editor.fontSize": 18,
